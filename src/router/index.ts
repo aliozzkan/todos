@@ -15,4 +15,9 @@ export const routes: Route[] = [
     exact: true,
     component: require("pages/Auth/Login").default,
   },
+  {
+    path: "/register",
+    exact: true,
+    component: require("pages/Auth/Register").default,
+  }
 ];

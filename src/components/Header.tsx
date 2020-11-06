@@ -48,6 +48,7 @@ function Header() {
         <Nav navbar>
           <NavItem>
             <NavLink href="/login">Login</NavLink>
+            <NavLink href="/register">Register</NavLink>
           </NavItem>
         </Nav>
       </Collapse>
