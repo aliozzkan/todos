@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useState, useRef, useEffect } from "react";
 import {
   Row,
   Col,
@@ -10,20 +10,25 @@ import {
   Label,
   FormText,
   Button,
+  Spinner,
 } from "reactstrap";
+import { useForm } from "react-hook-form";
+
+interface LoginFormFields {
+  username: string;
+  password: string;
+}
 
 function Login() {
-  const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const formValues = {
-      username,
-      password,
-    };
+  const { register, handleSubmit, errors, reset } = useForm<LoginFormFields>();
+  const [isLoading, setLoading] = useState(false);
 
-    console.log({formValues});
+  async function onValid(data: LoginFormFields) {
+    console.log("onValid =>", { data });
+    reset();
   }
+
+  console.log({ errors });
 
   return (
     <div>
@@ -33,33 +38,36 @@ function Login() {
             <CardBody>
               <h1 className="text-center">Giriş Yap</h1>
               <hr />
-              <Form onSubmit={handleSubmit}>
+              <Form onSubmit={handleSubmit(onValid)}>
                 <FormGroup>
                   <Label>Kullanıcı Adı</Label>
                   <Input
                     type="text"
                     placeholder="Lütfen Kullanıcı Adı Giriniz..."
-                    value={username}
-                    onChange={(e) => {
-                      setUsername(e.currentTarget.value);
-                    }}
+                    name="username"
+                    innerRef={register({ required: true })}
+                    invalid={!!errors["username"]}
                   />
-                  <FormText>Lorem ipsum dolor sit.</FormText>
                 </FormGroup>
                 <FormGroup>
                   <Label>Parola</Label>
                   <Input
                     type="password"
                     placeholder="Lütfen Parola Giriniz..."
-                    value={password}
-                    onChange={(e) => {
-                      setPassword(e.currentTarget.value);
-                    }}
+                    name="password"
+                    innerRef={register({ required: true })}
+                    invalid={!!errors["password"]}
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Button type="submit" size="lg" color="primary" block>
-                    Giriş Yap
+                  <Button
+                    type="submit"
+                    size="lg"
+                    color="primary"
+                    block
+                    disabled={isLoading}
+                  >
+                    {isLoading ? <Spinner /> : "Giriş Yap"}
                   </Button>
                 </FormGroup>
               </Form>
