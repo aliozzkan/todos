@@ -55,7 +55,7 @@ function Register() {
                                     <Label>Soyisim</Label>
                                     <Input
                                         type="text"
-                                        placeholder="Lütfen İsminizi Giriniz..."
+                                        placeholder="Lütfen Soyisminizi Giriniz..."
                                         name="surname"
                                         innerRef={register({ required: true })}
                                         invalid={!!errors["surname"]}
@@ -65,7 +65,7 @@ function Register() {
                                     <Label>Kullanıcı Adı</Label>
                                     <Input
                                         type="text"
-                                        placeholder="Lütfen İsminizi Giriniz..."
+                                        placeholder="Lütfen Kullanıcı Adınızı Giriniz..."
                                         name="username"
                                         innerRef={register({ required: true })}
                                         invalid={!!errors["username"]}
@@ -75,7 +75,7 @@ function Register() {
                                     <Label>Parola</Label>
                                     <Input
                                         type="text"
-                                        placeholder="Lütfen İsminizi Giriniz..."
+                                        placeholder="Lütfen Parolanızı Giriniz..."
                                         name="password"
                                         innerRef={register({ required: true })}
                                         invalid={!!errors["password"]}
