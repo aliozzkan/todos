@@ -1,6 +1,13 @@
 export interface Post {
-    userId: number;
     id: number;
     title: string;
-    body: string;
+    isDone: string;
+    toggle: string;
   }
+
+export interface Todo {
+  id: number;
+  title: string;
+  isDone: boolean;
+  deleteTodos: (id: any) => void;
+}
